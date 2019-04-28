@@ -58,27 +58,27 @@
                                 <h4 class="textwhite">Create An Account</h4>
                             </li>
                             <li class="list-group-item">
-                                First name<h:inputText  class="SignUpInput bgciel col-12 mb-3 mt-1" />
-                                Last name<h:inputText  class="SignUpInput bgciel col-12 mb-3 mt-1" />
-                                Email<h:inputText   class="SignUpInput bgciel col-12 mb-3 mt-1" />
-                                Password<h:inputSecret  class="SignUpInput bgciel col-12 mb-3 mt-1" />
+                                First name<h:inputText value="#{user.utilisateur.nom}" class="SignUpInput bgciel col-12 mb-3 mt-1" />
+                                Last name<h:inputText  value="#{user.utilisateur.prenom}" class="SignUpInput bgciel col-12 mb-3 mt-1" />
+                                Email<h:inputText  value="#{user.utilisateur.email}" class="SignUpInput bgciel col-12 mb-3 mt-1" />
+                                Password<h:inputSecret value="#{user.utilisateur.password}"  class="SignUpInput bgciel col-12 mb-3 mt-1" />
                                 
-                                Occupation<h:selectOneMenu class="SignUpInput bgciel col-12 mb-2 mt-1" > 
-                                    <f:selectItem itemValue = "1" itemLabel = "Student" /> 
-                                    <f:selectItem itemValue = "2" itemLabel = "Professor" /> 
+                                Occupation<h:selectOneMenu value="#{user.utilisateur.occupation}" class="SignUpInput bgciel col-12 mb-2 mt-1" > 
+                                    <f:selectItem itemValue = "Student" itemLabel = "Student" /> 
+                                    <f:selectItem itemValue = "Professor" itemLabel = "Professor" /> 
                                  </h:selectOneMenu> 
                                  
                                 <div class="col-12  mb-2 mt-1">
-                                    <p:selectOneRadio > 
-                                        <f:selectItem  itemValue = "1" itemLabel = "Male" /> 
-                                        <f:selectItem  itemValue = "2" itemLabel = "Female" />
+                                    <p:selectOneRadio value="#{user.utilisateur.sexe}" > 
+                                        <f:selectItem  itemValue = "Male" itemLabel = "Male" /> 
+                                        <f:selectItem  itemValue = "Female" itemLabel = "Female" />
                                      </p:selectOneRadio>    
                                 </div>
                                
                                
                                 
                                 Specialty
-                                <h:selectOneMenu class="SignUpInput bgciel col-12 mt-1 mb-3" > 
+                                <h:selectOneMenu value="#{user.utilisateur.specialite}" class="SignUpInput bgciel col-12 mt-1 mb-3" > 
                                     <f:selectItem itemValue = "1" itemLabel = "mathematics" /> 
                                     <f:selectItem itemValue = "2" itemLabel = "physics" /> 
                                     <f:selectItem itemValue = "1" itemLabel = "Computer Science" /> 
@@ -90,7 +90,7 @@
                                     <f:selectItem itemLabel="chemistry"/>
                                  </h:selectOneMenu> 
                                 
-                                <h:commandButton value="Submit" action="#{utilisateur.ajoutUtilisateur}" class="SignUpBtn mt-1 btn  btn-block"  />
+                                <h:commandButton value="Submit" action="#{user.ajoutUtilisateur}" class="SignUpBtn mt-1 btn  btn-block"  />
                             </li>
                           
                         </ul>

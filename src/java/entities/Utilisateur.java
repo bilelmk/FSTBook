@@ -49,7 +49,8 @@ public class Utilisateur implements Serializable {
     @Column(name = "niveu")
     private String niveu;
     @Column(name = "valide")
-    private Integer valide;
+    private Integer valide = 0;
+    
     @ManyToMany(mappedBy = "utilisateurList")
     private List<Forum> forumList;
     

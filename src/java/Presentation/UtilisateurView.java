@@ -11,24 +11,13 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
-@ManagedBean(name="utilisateur")
+@ManagedBean(name="user")
 @RequestScoped
 public class UtilisateurView {
 
     @EJB 
     private UtilisateurFacade utilisateurFacade ;
-    private Utilisateur utilisateur ;
-    private int nb ;
-
-    public void setNb(int nb) {
-        this.nb = nb;
-    }
-
-    public int getNb() {
-        return nb;
-    }
-    
-    
+    private Utilisateur utilisateur = new Utilisateur();
     
     public UtilisateurView() {
     }
@@ -42,8 +31,7 @@ public class UtilisateurView {
     }
     
     public String ajoutUtilisateur(){
-        
-        this.nb = this.utilisateurFacade.findAll().size();
-        return "profil";
+        this.utilisateurFacade.create(utilisateur);
+        return "profil" ;
     }
 }
