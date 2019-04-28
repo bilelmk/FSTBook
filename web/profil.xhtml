@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Profil</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+        <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+        
+        <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+        <h:outputStylesheet library="css" name="font-awesome.min.css" />
+        <h:outputScript library="js" name="jquery.min.js" />
+        <h:outputScript library="js" name="tether.min.js" />
+        <h:outputScript library="js" name="bootstrap.min.js" />
+        <h:outputStylesheet library="css" name="style.css"/>
+    </h:head>
+    <h:body>
+        
+    <!-- **********************     Nav Bar     ************************** -->
+    <nav class="navbar bgblue navbar-inverse navbar-toggleable-sm fixed-top ">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="#"><img src="img/logo.png" height="30" width="41" /></a>
+
+            <div class="collapse navbar-collapse" id="Navbar">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active"><a class="nav-link" href="#"><span class="fa fa-home fa-lg"></span> Home</a></li>
+                    <li class="nav-item "><a class="nav-link" href="./aboutus.html"><span class="fa fa-info fa-lg"></span> About</a></li>
+                    <li class="nav-item "><a class="nav-link" href="#"><span class="fa fa-list fa-lg"></span> Menu</a></li>
+                    <li class="nav-item "><a class="nav-link" href="./contactus.html"><span class="fa fa-address-card fa-lg"></span> Contact</a></li>
+                </ul>
+
+                <span class="navbar-text">
+                    <a><span id="show-login" class="fa fa-sign-in" > Login</span></a>
+                </span>
+            </div>
+
+        </div>
+    </nav>
+    
+    <div style="margin-top: 70px" class="container">
+        <div class="row">
+            <div class="col-12 col-sm-5 col-md-4 col-lg-3" >
+                <div class="profilCard card">
+                    <div style="height: 6rem; " class="bgblue"></div>
+                    <img class="imgProfil card-img-top rounded-circle" src="./resources/img/index.png" alt="Card image cap"/>
+                    <div class="card-body p-3">
+                        <h5 class="textCenter card-title">Card title</h5>
+                       
+                        <p class="textCenter card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                       
+                    </div>
+                 </div>
+                
+            </div>
+            
+        </div>
+    </div>    
+        
+        
+        
+    </h:body>
+</html>

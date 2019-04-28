@@ -1,6 +1,113 @@
 
+/*********** Theme Color ************/
+.bgdark{
+    background-color: #004a7c ;
+}
+
+.bgblue{
+    background-color: #005691 ;
+}
+
+.bgciel{
+    background-color: #e8f1f5 ;
+}
+
+.bgwhite{
+    background-color: #fafafa ;
+}
 
 
-.test{
-    background-color: red ;
+.textdark{
+    color:  #004a7c  ;
+}
+
+.textblue{
+    color:  #005691 ;
+}
+
+.textciel{
+    color: #e8f1f5 ;
+}
+
+.textwhite{
+    color: #fafafa ;
+}
+
+.textCenter{
+    text-align: center ;
+}
+
+
+
+.profilCard{
+    border-radius: 0px ;
+   
+}
+.imgProfil{
+    height : 40% ;
+    width :40% ;
+    text-align: center ; 
+    position:relative ;
+    left: 30% ;
+    top : -55px ;
+}
+body{
+    background-color: #e8f1f5 ;
+    
+}
+
+
+
+.LoginLabel{
+    font-size: 11px ;
+
+}
+.LoginInput{
+    border: none ;
+    border-radius: 0px ;
+    height: 23px ;
+    margin-top: -5px ;
+    margin-bottom: -17px ;
+    font-size: 13px ;
+
+}
+    
+.LoginBtn{
+    border: 1px solid white ;
+    background-color: rgba(256,256,256,0);
+    color:white ;
+    height: 23px ;
+    border-radius: 1px ;
+    font-size: 12px ;
+    font-weight: bold ;
+    
+
+}
+.LoginBtn:hover{
+    border: 1px solid white ;
+    background-color: rgba(256,256,256,0.9);
+    color:  #005691 ;
+}
+.SignUpInput{
+    border: 1px solid gray  ;
+    border-radius: 0px ;
+    height: 35px ;
+    box-shadow: none ;
+}
+
+.SignUpBtn{
+    border: 1px solid white ;
+    background-color: #005691 ;
+    color:white ;
+    height: 40px ;
+    font-size: 12px ;
+    font-weight: bold ;
+    border-radius: 0px ;
+}
+
+
+.SignUpBtn:hover{
+    border: 1px solid #005691 ;
+    background-color: rgba(256,256,256,0.9);
+    color:  #005691 ;
 }

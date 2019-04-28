@@ -1,19 +1,121 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      	xmlns:p="http://primefaces.org/ui"
+         xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
-        <title>Index Facelet</title>
+        <title>Login</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+        <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+        
+        <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+        <h:outputStylesheet library="css" name="font-awesome.min.css" />
+        <h:outputScript library="js" name="jquery.min.js" />
+        <h:outputScript library="js" name="tether.min.js" />
+        <h:outputScript library="js" name="bootstrap.min.js" />
         <h:outputStylesheet library="css" name="style.css"/>
     </h:head>
     <h:body>
-        <h:form class="test">
-            <h:outputLabel value="Message:" />
-            &nbsp;&nbsp;
-            <h:inputText value="#{MessageView.message.message}"/>
-            &nbsp;&nbsp;
-            <h:commandButton action="#{MessageView.postMessage}" value="PostMessage"/>
-        </h:form>
+        
+    <!-- **********************     Nav Bar     ************************** -->
+    <nav class="navbar bgblue navbar-inverse navbar-toggleable-sm fixed-top ">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="#"><img src="img/logo.png" height="30" width="41" /></a>
+
+            <div class="collapse navbar-collapse" id="Navbar">
+                <ul class="navbar-nav mr-auto">
+                </ul>
+                
+               
+                <div style="margin-top: -10px ;" class="mr-sm-2 navbar-text form-group">
+                    <h:outputLabel class="LoginLabel textwhite" value="Email"/>
+                    <h:inputText class="LoginInput form-control" />
+                </div>
+                 <div style="margin-top: -10px ;" class="mr-sm-2 navbar-text form-group">
+                    <h:outputLabel class="LoginLabel textwhite" value="Password"/>
+                    <h:inputText class="LoginInput form-control" />
+                </div>
+                <div style="margin-top: 12px ;margin-bottom: -10px" class="mr-sm-2 navbar-text form-group">
+                    <h:commandButton class="LoginBtn" value="Log In"    />
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <div style="margin-top: 150px" class="container">
+        <div class="row">
+            <div class="col-12 col-md-5" >
+                
+                <h:form>
+                    <div class="card text-center bgwhite profilCard">
+
+                        <ul class="list-group list-group-flush">
+                            <li class="bgblue list-group-item" style="border-radius: 0px ">
+                                <h4 class="textwhite">Create An Account</h4>
+                            </li>
+                            <li class="list-group-item">
+                                First name<h:inputText  class="SignUpInput bgciel col-12 mb-3 mt-1" />
+                                Last name<h:inputText  class="SignUpInput bgciel col-12 mb-3 mt-1" />
+                                Email<h:inputText   class="SignUpInput bgciel col-12 mb-3 mt-1" />
+                                Password<h:inputSecret  class="SignUpInput bgciel col-12 mb-3 mt-1" />
+                                
+                                Occupation<h:selectOneMenu class="SignUpInput bgciel col-12 mb-2 mt-1" > 
+                                    <f:selectItem itemValue = "1" itemLabel = "Student" /> 
+                                    <f:selectItem itemValue = "2" itemLabel = "Professor" /> 
+                                 </h:selectOneMenu> 
+                                 
+                                <div class="col-12  mb-2 mt-1">
+                                    <p:selectOneRadio > 
+                                        <f:selectItem  itemValue = "1" itemLabel = "Male" /> 
+                                        <f:selectItem  itemValue = "2" itemLabel = "Female" />
+                                     </p:selectOneRadio>    
+                                </div>
+                               
+                               
+                                
+                                Specialty
+                                <h:selectOneMenu class="SignUpInput bgciel col-12 mt-1 mb-3" > 
+                                    <f:selectItem itemValue = "1" itemLabel = "mathematics" /> 
+                                    <f:selectItem itemValue = "2" itemLabel = "physics" /> 
+                                    <f:selectItem itemValue = "1" itemLabel = "Computer Science" /> 
+                                    <f:selectItem itemValue = "2" itemLabel = "biology" /> 
+                                    <f:selectItem itemValue = "2" itemLabel = "geology" /> 
+                                    <f:selectItem itemLabel="Life and Earth Sciences"/>
+                                    <f:selectItem itemLabel="Geomatics"/>
+                                    <f:selectItem itemLabel="Electronic"/>
+                                    <f:selectItem itemLabel="chemistry"/>
+                                 </h:selectOneMenu> 
+                                
+                                <h:commandButton value="Submit" action="profil" class="SignUpBtn mt-1 btn  btn-block"  />
+                            </li>
+                          
+                        </ul>
+                   
+                    </div>   
+                </h:form>
+                
+            </div>
+            
+            
+            
+            
+            <div class="col-12 col-md-7" >
+               
+                <div class="card text-center bgwhite profilCard">
+
+
+
+                </div>    
+            </div>
+    
+      
+        </div>
+    </div>    
+    
     </h:body>
 </html>
 
