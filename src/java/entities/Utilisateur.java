@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -15,7 +16,9 @@ import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "utilisateur")
-
+@NamedQuery(
+        name = "Utilisateur.findByEmail",
+        query = "SELECT p FROM Utilisateur p WHERE p.email = :email")
 public class Utilisateur implements Serializable {
 
    

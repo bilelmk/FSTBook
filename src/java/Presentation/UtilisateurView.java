@@ -34,4 +34,6 @@ public class UtilisateurView {
         this.utilisateurFacade.create(utilisateur);
         return "profil" ;
     }
+    
+    
 }

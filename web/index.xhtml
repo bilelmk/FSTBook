@@ -30,18 +30,20 @@
                 <ul class="navbar-nav mr-auto">
                 </ul>
                 
-               
+                    
+                <h:form>
                 <div style="margin-top: -10px ;" class="mr-sm-2 navbar-text form-group">
                     <h:outputLabel class="LoginLabel textwhite" value="Email"/>
-                    <h:inputText class="LoginInput form-control" />
+                    <h:inputText value="#{login.email}" class="LoginInput form-control" />
                 </div>
                  <div style="margin-top: -10px ;" class="mr-sm-2 navbar-text form-group">
                     <h:outputLabel class="LoginLabel textwhite" value="Password"/>
-                    <h:inputText class="LoginInput form-control" />
+                    <h:inputText value="#{login.password}" class="LoginInput form-control" />
                 </div>
                 <div style="margin-top: 12px ;margin-bottom: -10px" class="mr-sm-2 navbar-text form-group">
-                    <h:commandButton class="LoginBtn" value="Log In"    />
+                    <h:commandButton action="#{login.connexion()}" class="LoginBtn" value="Log In"    />
                 </div>
+                </h:form>
             </div>
         </div>
     </nav>

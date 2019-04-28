@@ -9,6 +9,7 @@ import entities.Utilisateur;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -26,6 +27,12 @@ public class UtilisateurFacade extends AbstractFacade<Utilisateur> {
 
     public UtilisateurFacade() {
         super(Utilisateur.class);
+    }
+    
+    public Utilisateur findByEmail(String email) {
+        Query query=em.createNamedQuery("Utilisateur.findByEmail", Utilisateur.class);
+        query.setParameter("email",email);
+        return  (Utilisateur) query.getSingleResult();
     }
     
 }
