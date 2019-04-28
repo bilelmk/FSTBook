@@ -1,9 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
       	xmlns:p="http://primefaces.org/ui"
-         xmlns:f="http://java.sun.com/jsf/core">
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+    
     <h:head>
         <title>Login</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
@@ -60,37 +62,68 @@
                                 <h4 class="textwhite">Create An Account</h4>
                             </li>
                             <li class="list-group-item">
-                                First name<h:inputText value="#{user.utilisateur.nom}" class="SignUpInput bgciel col-12 mb-3 mt-1" />
-                                Last name<h:inputText  value="#{user.utilisateur.prenom}" class="SignUpInput bgciel col-12 mb-3 mt-1" />
-                                Email<h:inputText  value="#{user.utilisateur.email}" class="SignUpInput bgciel col-12 mb-3 mt-1" />
-                                Password<h:inputSecret value="#{user.utilisateur.password}"  class="SignUpInput bgciel col-12 mb-3 mt-1" />
-                                
-                                Occupation<h:selectOneMenu value="#{user.utilisateur.occupation}" class="SignUpInput bgciel col-12 mb-2 mt-1" > 
+                                First name<h:inputText id="nom" value="#{user.utilisateur.nom}" class="SignUpInput bgciel col-12 mb-3 mt-1" 
+                                                       validatorMessage="Il faut insérer votre nom" >
+                                <f:validateRequired />
+                                </h:inputText>
+                                <h:message for="nom" style="color:red" />
+                                            
+                                Last name<h:inputText  id="prenom" value="#{user.utilisateur.prenom}" class="SignUpInput bgciel col-12 mb-3 mt-1" 
+                                                       validatorMessage="Il faut insérer votre prenom" >
+                                <f:validateRequired />
+                                </h:inputText>
+                                <h:message for="prenom" style="color:red" />
+                                             
+                                Email<h:inputText id="mail" value="#{user.utilisateur.email}" class="SignUpInput bgciel col-12 mb-3 mt-1" >
+                                <f:validateRequired />
+                                </h:inputText>
+                                <h:message for="mail" style="color:red" />
+                                            
+                                Password<h:inputSecret id="password"  value="#{user.utilisateur.password}"  class="SignUpInput bgciel col-12 mb-3 mt-1" >
+                                <f:validateRequired />
+                                </h:inputText>
+                                            <h:message for="password" style="color:red" />
+                                            
+                                Occupation<h:selectOneMenu id="occupation" value="#{user.utilisateur.occupation}" class="SignUpInput bgciel col-12 mb-2 mt-1"  
+                                                           validatorMessage="Il faut insérer votre occupation" >
                                     <f:selectItem itemValue = "Student" itemLabel = "Student" /> 
                                     <f:selectItem itemValue = "Professor" itemLabel = "Professor" /> 
-                                 </h:selectOneMenu> 
-                                 
+                                    <f:validateRequired />
+                                </h:selectOneMenu> 
+                                <h:message for="occupation" style="color:red" />
+
                                 <div class="col-12  mb-2 mt-1">
-                                    <p:selectOneRadio value="#{user.utilisateur.sexe}" > 
+                                    <p:selectOneRadio id="sexe" value="#{user.utilisateur.sexe}"  
+                                                      validatorMessage="Il faut insérer votre sexe" required="true" >
                                         <f:selectItem  itemValue = "Male" itemLabel = "Male" /> 
                                         <f:selectItem  itemValue = "Female" itemLabel = "Female" />
                                      </p:selectOneRadio>    
                                 </div>
+                                <h:message for="sexe" style="color:red" />
+
                                
-                               
+                                Age
+                                <h:inputText id="age" class="SignUpInput bgciel col-12 mb-2 mt-1"  value="#{user.utilisateur.age}" 
+                                             validatorMessage="Il faut insérer votre age"> 
+                                    <f:validateRequired />
+                                </h:inputText>
+                                        <h:message for="age" style="color:red" />
                                 
                                 Specialty
-                                <h:selectOneMenu value="#{user.utilisateur.specialite}" class="SignUpInput bgciel col-12 mt-1 mb-3" > 
-                                    <f:selectItem itemValue = "1" itemLabel = "mathematics" /> 
-                                    <f:selectItem itemValue = "2" itemLabel = "physics" /> 
-                                    <f:selectItem itemValue = "1" itemLabel = "Computer Science" /> 
-                                    <f:selectItem itemValue = "2" itemLabel = "biology" /> 
-                                    <f:selectItem itemValue = "2" itemLabel = "geology" /> 
-                                    <f:selectItem itemLabel="Life and Earth Sciences"/>
-                                    <f:selectItem itemLabel="Geomatics"/>
-                                    <f:selectItem itemLabel="Electronic"/>
-                                    <f:selectItem itemLabel="chemistry"/>
+                                <h:selectOneMenu  id="sp" value="#{user.utilisateur.specialite}" class="SignUpInput bgciel col-12 mt-1 mb-3" 
+                                                  validatorMessage="Il faut insérer votre Spécialité" required="true" > 
+                                    <f:selectItem itemValue = "mathematics" itemLabel = "mathematics" /> 
+                                    <f:selectItem itemValue = "physics" itemLabel = "physics" /> 
+                                    <f:selectItem itemValue = "Computer Science" itemLabel = "Computer Science" /> 
+                                    <f:selectItem itemValue = "biology" itemLabel = "biology" /> 
+                                    <f:selectItem itemValue = "geology" itemLabel = "geology" /> 
+                                    <f:selectItem itemValue = "Life and Earth Sciences" itemLabel="Life and Earth Sciences"/>
+                                    <f:selectItem itemValue = "Geomatics" itemLabel="Geomatics"/>
+                                    <f:selectItem itemValue = "Electronic" itemLabel="Electronic"/>
+                                    <f:selectItem itemValue = "chemistry" itemLabel="chemistry"/>
                                  </h:selectOneMenu> 
+                                        <h:message for="sp" style="color:red" />
+
                                 
                                 <h:commandButton value="Submit" action="#{user.ajoutUtilisateur}" class="SignUpBtn mt-1 btn  btn-block"  />
                             </li>
