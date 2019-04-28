@@ -18,10 +18,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 
-/**
- *
- * @author SADOK
- */
 @Entity
 @Table(name = "commentaire")
 

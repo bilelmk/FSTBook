@@ -15,10 +15,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
-/**
- *
- * @author SADOK
- */
 @Entity
 @Table(name = "document")
 public class Document implements Serializable {

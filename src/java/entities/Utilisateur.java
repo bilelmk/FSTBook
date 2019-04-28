@@ -1,10 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package entities;
-
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -18,10 +12,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author SADOK
- */
+
 @Entity
 @Table(name = "utilisateur")
 

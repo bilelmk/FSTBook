@@ -12,10 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-/**
- *
- * @author SADOK
- */
+
 @Entity
 @Table(name = "message")
 

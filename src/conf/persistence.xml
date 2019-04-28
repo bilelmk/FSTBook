@@ -2,7 +2,14 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="Tp8PU" transaction-type="JTA">
     <jta-data-source>jdbc/fstbook</jta-data-source>
-    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <class>entities.Commentaire</class>
+    <class>entities.Document</class>
+    <class>entities.Forum</class>
+    <class>entities.Image</class>
+    <class>entities.Message</class>
+    <class>entities.Publication</class>
+    <class>entities.Utilisateur</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <shared-cache-mode>ALL</shared-cache-mode>
     <properties>
       <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
