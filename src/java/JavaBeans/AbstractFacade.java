@@ -3,14 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package boundary;
+package JavaBeans;
 
 import java.util.List;
 import javax.persistence.EntityManager;
 
-
+/**
+ *
+ * @author Y520
+ */
 public abstract class AbstractFacade<T> {
-
     private Class<T> entityClass;
 
     public AbstractFacade(Class<T> entityClass) {

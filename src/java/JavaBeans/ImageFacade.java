@@ -3,20 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package boundary;
+package JavaBeans;
 
-import entities.Message;
+import entities.Image;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author ahmed
+ * @author Y520
  */
 @Stateless
-public class MessageFacade extends AbstractFacade<Message> {
-
+public class ImageFacade extends AbstractFacade<Image> {
     @PersistenceContext(unitName = "Tp8PU")
     private EntityManager em;
 
@@ -25,8 +24,8 @@ public class MessageFacade extends AbstractFacade<Message> {
         return em;
     }
 
-    public MessageFacade() {
-        super(Message.class);
+    public ImageFacade() {
+        super(Image.class);
     }
     
 }

@@ -6,35 +6,80 @@
 package entities;
 
 import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 /**
  *
- * @author ahmed
+ * @author SADOK
  */
 @Entity
+@Table(name = "message")
+
 public class Message implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private String message ;
-    public Long getId() {
-        return id;
+    
+    @EmbeddedId
+    protected MessagePK messagePK;
+    @Column(name = "contenu")
+    private String contenu;
+    @JoinColumn(name = "uti_idUser", referencedColumnName = "idUser", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private Utilisateur utilisateur;
+    @JoinColumn(name = "idUser", referencedColumnName = "idUser", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private Utilisateur utilisateur1;
+
+    public Message() {
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Message(MessagePK messagePK) {
+        this.messagePK = messagePK;
+    }
+
+    public Message(int idUser, int utiidUser) {
+        this.messagePK = new MessagePK(idUser, utiidUser);
+    }
+
+    public MessagePK getMessagePK() {
+        return messagePK;
+    }
+
+    public void setMessagePK(MessagePK messagePK) {
+        this.messagePK = messagePK;
+    }
+
+    public String getContenu() {
+        return contenu;
+    }
+
+    public void setContenu(String contenu) {
+        this.contenu = contenu;
+    }
+
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
+
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
+    }
+
+    public Utilisateur getUtilisateur1() {
+        return utilisateur1;
+    }
+
+    public void setUtilisateur1(Utilisateur utilisateur1) {
+        this.utilisateur1 = utilisateur1;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (messagePK != null ? messagePK.hashCode() : 0);
         return hash;
     }
 
@@ -45,7 +90,7 @@ public class Message implements Serializable {
             return false;
         }
         Message other = (Message) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.messagePK == null && other.messagePK != null) || (this.messagePK != null && !this.messagePK.equals(other.messagePK))) {
             return false;
         }
         return true;
@@ -53,15 +98,7 @@ public class Message implements Serializable {
 
     @Override
     public String toString() {
-        return "Message{" + "id=" + id + ", message=" + message + '}';
-    }
-    
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
+        return "aaaa.Message[ messagePK=" + messagePK + " ]";
     }
     
 }
