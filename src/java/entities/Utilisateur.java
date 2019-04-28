@@ -39,15 +39,14 @@ public class Utilisateur implements Serializable {
 
     @Column(name = "sexe")
     private String sexe;
-    @Column(name = "date_naissance")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dateNaissance;
+    
+    @Column(name = "age")
+    private int age;
 
     @Column(name = "specialite")
     private String specialite;
 
-    @Column(name = "niveu")
-    private String niveu;
+   
     @Column(name = "valide")
     private Integer valide = 0;
     
@@ -118,12 +117,12 @@ public class Utilisateur implements Serializable {
         this.sexe = sexe;
     }
 
-    public Date getDateNaissance() {
-        return dateNaissance;
+    public int getAge() {
+        return age;
     }
 
-    public void setDateNaissance(Date dateNaissance) {
-        this.dateNaissance = dateNaissance;
+    public void setAge(int age) {
+        this.age = age;
     }
 
     public String getSpecialite() {
@@ -132,14 +131,6 @@ public class Utilisateur implements Serializable {
 
     public void setSpecialite(String specialite) {
         this.specialite = specialite;
-    }
-
-    public String getNiveu() {
-        return niveu;
-    }
-
-    public void setNiveu(String niveu) {
-        this.niveu = niveu;
     }
 
     public Integer getValide() {
