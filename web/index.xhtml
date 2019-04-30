@@ -41,7 +41,7 @@
                 </div>
                  <div style="margin-top: -10px ;" class="mr-sm-2 navbar-text form-group">
                     <h:outputLabel class="LoginLabel textwhite" value="Password"/>
-                    <h:inputText value="#{login.password}" class="LoginInput form-control" />
+                    <h:inputSecret value="#{login.password}" class="LoginInput form-control" />
                 </div>
                 <div style="margin-top: 12px ;margin-bottom: -10px" class="mr-sm-2 navbar-text form-group">
                     <h:commandButton action="#{login.connexion()}" class="LoginBtn" value="Log In"    />
@@ -142,13 +142,29 @@
             <div class="col-12 col-md-7" >
                
                 <div class="card text-center bgwhite profilCard">
-                    <h5>#{pub.forum.nom}</h5>
-                 
+                    <h5>#{pub.forum.nom}</h5>                 
                  </div>    
     
                 <c:forEach items="#{pub.pub}" var="item" >
-                    <div class="card text-center bgwhite profilCard">
-                        <p>#{item.contenu}</p>
+                    <div class="card text-center bgwhite profilCard mt-3">
+                        <div class="row">
+                            <div class="col-2">
+                                <img class="img-fluid p-2 mt-3 mb-3 ml-3" src="#{item.idUser.image}" />
+                            </div>
+                            <div class="col-5" style="text-align: left">
+                                <p class="pubUser">#{item.idUser.nom} #{item.idUser.prenom}
+                                    <span>#{item.idUser.occupation}</span>
+                                </p>
+                                <p class="pubDate">
+                                    #{item.date}
+                                </p>
+                            </div>
+                            <div class="col-5"></div>
+                            <div class="col-12" style="text-align: left">
+                                <p class="pubPara">#{item.contenu}</p>
+                            </div>
+                        </div>
+
                     </div> 
                 </c:forEach>
 

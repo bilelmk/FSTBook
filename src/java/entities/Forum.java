@@ -29,7 +29,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
      @NamedQuery(name = "Forum.findById", query = "SELECT p FROM Forum p WHERE p.idForum = :idForum"),
    // @NamedQuery(name = "Forum.findByIdUser", query = "SELECT p FROM Forum p WHERE p.idUser = :idUser"),
-    @NamedQuery(name = "Forum.findByIdUser", query = "SELECT p FROM Forum p WHERE p.utilisateurList = :idUser")
+    @NamedQuery(name = "Forum.findByIdUser", query = "SELECT p FROM Forum p WHERE p.utilisateurList = :idUser"),
+     @NamedQuery(name = "Forum.findById", query = "SELECT p FROM Forum p WHERE p.idForum = :idForum")
     })
 
 public class Forum implements Serializable {

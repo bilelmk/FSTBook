@@ -37,7 +37,5 @@ public class PublicationFacade extends AbstractFacade<Publication> {
         query.setParameter("id",id);
         return  (Vector<Publication>) query.getResultList();
     }
-
-   
     
 }

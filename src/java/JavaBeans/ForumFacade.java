@@ -43,4 +43,5 @@ public class ForumFacade extends AbstractFacade<Forum> {
         query.setParameter("idUser",userId);
         return   (Vector<Forum>) query.getResultList();
     }
+
 }

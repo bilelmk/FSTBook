@@ -10,6 +10,11 @@ import JavaBeans.PublicationFacade;
 import entities.Forum;
 import entities.Publication;
 import java.util.ArrayList;
+
+import JavaBeans.UtilisateurFacade;
+import entities.Forum;
+import entities.Publication;
+import entities.Utilisateur;
 import java.util.Vector;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -25,6 +30,10 @@ public class PubView {
     private PublicationFacade pubfacade ;
     @EJB
     private ForumFacade forumfacade ;
+
+    @EJB 
+    private UtilisateurFacade userfacade ;
+    
     
     private Vector<Publication> pub = new Vector<Publication>() ;
     private Forum forum ;
@@ -53,6 +62,11 @@ public class PubView {
     public void getPubByIdForum(){
         this.forum = this.forumfacade.findByid(1);
         this.pub = pubfacade.findByIdForum(this.forum) ;
+    }
+    
+
+    public Utilisateur getPubUser(int id){
+        return this.userfacade.findById(id) ;
     }
     
     @PostConstruct
