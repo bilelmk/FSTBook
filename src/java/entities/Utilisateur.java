@@ -1,6 +1,5 @@
 package entities;
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,8 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlTransient;
 
 
@@ -45,6 +42,9 @@ public class Utilisateur implements Serializable {
     
     @Column(name = "age")
     private int age;
+
+    @Column(name = "image")
+    private String image="./resources/img/index.png";
 
     @Column(name = "specialite")
     private String specialite;
@@ -82,6 +82,14 @@ public class Utilisateur implements Serializable {
 
     public String getPrenom() {
         return prenom;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getImage() {
+        return image;
     }
 
     public void setPrenom(String prenom) {
@@ -173,9 +181,5 @@ public class Utilisateur implements Serializable {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "aaaa.Utilisateur[ idUser=" + idUser + " ]";
-    }
-    
+   
 }

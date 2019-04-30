@@ -16,6 +16,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -24,6 +26,11 @@ import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "forum")
+@NamedQueries({
+     @NamedQuery(name = "Forum.findById", query = "SELECT p FROM Forum p WHERE p.idForum = :idForum"),
+   // @NamedQuery(name = "Forum.findByIdUser", query = "SELECT p FROM Forum p WHERE p.idUser = :idUser"),
+    @NamedQuery(name = "Forum.findByIdUser", query = "SELECT p FROM Forum p WHERE p.utilisateurList = :idUser")
+    })
 
 public class Forum implements Serializable {
 
@@ -115,9 +122,6 @@ public class Forum implements Serializable {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "aaaa.Forum[ idForum=" + idForum + " ]";
-    }
+    
     
 }

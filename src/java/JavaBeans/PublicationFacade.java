@@ -5,10 +5,14 @@
  */
 package JavaBeans;
 
+import entities.Forum;
 import entities.Publication;
+import java.util.ArrayList;
+import java.util.Vector;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,5 +31,13 @@ public class PublicationFacade extends AbstractFacade<Publication> {
     public PublicationFacade() {
         super(Publication.class);
     }
+    
+    public Vector<Publication> findByIdForum(Forum id) {
+        Query query=em.createNamedQuery("Publication.idForum", Publication.class);
+        query.setParameter("id",id);
+        return  (Vector<Publication>) query.getResultList();
+    }
+
+   
     
 }
