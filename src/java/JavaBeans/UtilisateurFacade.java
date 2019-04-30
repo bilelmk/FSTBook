@@ -35,4 +35,9 @@ public class UtilisateurFacade extends AbstractFacade<Utilisateur> {
         return  (Utilisateur) query.getSingleResult();
     }
     
+     public Utilisateur findById(int id) {
+        Query query=em.createNamedQuery("Utilisateur.findbyId", Utilisateur.class);
+        query.setParameter("id",id);
+        return  (Utilisateur) query.getSingleResult();
+    }
 }

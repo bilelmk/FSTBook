@@ -111,3 +111,21 @@ body{
     background-color: rgba(256,256,256,0.9);
     color:  #005691 ;
 }
+
+.pubUser{
+    font-weight: bold ;
+    font-size: 80% ;
+    margin-top: 30px ;
+}
+
+.pubDate{
+    font-size: 70% ;
+    color: grey ;
+    margin-top: -15px ;
+
+}
+.pubPara{
+    padding: 10px ;
+    margin-left: 20px ;
+    background-color: #eee ;
+}

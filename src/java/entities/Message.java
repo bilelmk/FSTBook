@@ -93,9 +93,6 @@ public class Message implements Serializable {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "aaaa.Message[ messagePK=" + messagePK + " ]";
-    }
+  
     
 }

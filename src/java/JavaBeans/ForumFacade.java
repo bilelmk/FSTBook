@@ -9,6 +9,7 @@ import entities.Forum;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,4 +29,9 @@ public class ForumFacade extends AbstractFacade<Forum> {
         super(Forum.class);
     }
     
+    public Forum findByid(int id) {
+          Query query=em.createNamedQuery("Forum.findById", Forum.class);
+          query.setParameter("idForum",id);
+          return  (Forum) query.getSingleResult();
+      }   
 }

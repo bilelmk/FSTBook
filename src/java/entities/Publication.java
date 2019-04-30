@@ -27,10 +27,11 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "publication")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Publication.findAll", query = "SELECT p FROM Publication p")
+      @NamedQuery(name = "Publication.findAll", query = "SELECT p FROM Publication p")
     , @NamedQuery(name = "Publication.findByIdPub", query = "SELECT p FROM Publication p WHERE p.idPub = :idPub")
     , @NamedQuery(name = "Publication.findByDate", query = "SELECT p FROM Publication p WHERE p.date = :date")
-    , @NamedQuery(name = "Publication.findByContenu", query = "SELECT p FROM Publication p WHERE p.contenu = :contenu")})
+    , @NamedQuery(name = "Publication.findByContenu", query = "SELECT p FROM Publication p WHERE p.contenu = :contenu")
+    , @NamedQuery(  name = "Publication.idForum" ,query = "SELECT p FROM Publication p WHERE p.idForum = :id")})
 public class Publication implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -152,9 +153,5 @@ public class Publication implements Serializable {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "aaaa.Publication[ idPub=" + idPub + " ]";
-    }
-    
+   
 }

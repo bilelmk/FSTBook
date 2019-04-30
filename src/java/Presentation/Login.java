@@ -8,37 +8,35 @@ package Presentation;
 import JavaBeans.UtilisateurFacade;
 import entities.Utilisateur;
 import javax.ejb.EJB;
-import javax.inject.Named;
-import javax.enterprise.context.Dependent;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
-/**
- *
- * @author SADOK
- */
-@Named(value = "login")
-@Dependent
+@ManagedBean(name="login")
+@RequestScoped
 public class Login {
     @EJB 
     private UtilisateurFacade utilisateurFacade ;
-    public Utilisateur user;
-    public String password;
-    public String email;
-    /**
-     * Creates a new instance of Login
-     */
-    public Login() {
-    }
+    
+    FacesContext context = FacesContext.getCurrentInstance();
+
+    private Utilisateur LoginUser;
+    private String password;
+    private String email;
+
 
     public String getPassword() {
         return password;
     }
-
+    
+    public Login() {
+    }
+    
     public void setPassword(String password) {
         this.password = password;
     }
 
-    
-
+   
     public String getEmail() {
         return email;
     }
@@ -47,18 +45,25 @@ public class Login {
         this.email = email;
     }
     
+    public String logout(){
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        return "index?faces-redirect=true";
+    }
     public String connexion(){
-        System.out.println("aaaa ssad");
-        System.out.println(this.password);
-        System.out.println(this.email);
-        this.user= this.utilisateurFacade.findByEmail("sadok");
-        System.out.println(this.password);
-        
-        if (this.user != null){
-            if (this.user.getPassword() == this.password){
-                return "profil" ;
+        try{
+            this.LoginUser= this.utilisateurFacade.findByEmail(this.email);
+            if (this.LoginUser.getPassword().equals(this.password)){
+                    context.getExternalContext().getSessionMap().put("LoginUser", LoginUser);
+                    return "profil" ;
+
             }
-        }
-        return "profil";
+            else{
+                return "#" ;
+            }
+
+        }catch(Exception e){
+            return "#";
+
+        } 
     }
 }
