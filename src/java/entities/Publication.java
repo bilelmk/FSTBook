@@ -8,6 +8,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -36,28 +37,22 @@ public class Publication implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
-    @NotNull
+    @GeneratedValue
     @Column(name = "idPub")
     private Integer idPub;
     @Column(name = "date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
-    @Size(max = 254)
+    
     @Column(name = "contenu")
     private String contenu;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPub")
-    private List<Image> imageList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPub")
-    private List<Document> documentList;
     @JoinColumn(name = "idUser", referencedColumnName = "idUser")
     @ManyToOne(optional = false)
     private Utilisateur idUser;
     @JoinColumn(name = "idForum", referencedColumnName = "idForum")
     @ManyToOne(optional = false)
     private Forum idForum;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPub")
-    private List<Commentaire> commentaireList;
+    
 
     public Publication() {
     }
@@ -90,23 +85,7 @@ public class Publication implements Serializable {
         this.contenu = contenu;
     }
 
-    @XmlTransient
-    public List<Image> getImageList() {
-        return imageList;
-    }
-
-    public void setImageList(List<Image> imageList) {
-        this.imageList = imageList;
-    }
-
-    @XmlTransient
-    public List<Document> getDocumentList() {
-        return documentList;
-    }
-
-    public void setDocumentList(List<Document> documentList) {
-        this.documentList = documentList;
-    }
+    
 
     public Utilisateur getIdUser() {
         return idUser;
@@ -124,14 +103,7 @@ public class Publication implements Serializable {
         this.idForum = idForum;
     }
 
-    @XmlTransient
-    public List<Commentaire> getCommentaireList() {
-        return commentaireList;
-    }
-
-    public void setCommentaireList(List<Commentaire> commentaireList) {
-        this.commentaireList = commentaireList;
-    }
+    
 
     @Override
     public int hashCode() {

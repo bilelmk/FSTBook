@@ -7,25 +7,25 @@ package Presentation;
 
 import JavaBeans.ForumFacade;
 import JavaBeans.PublicationFacade;
-import entities.Forum;
-import entities.Publication;
-import java.util.ArrayList;
+
 
 import JavaBeans.UtilisateurFacade;
 import entities.Forum;
 import entities.Publication;
 import entities.Utilisateur;
+import java.util.Date;
 import java.util.Vector;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 
 @ManagedBean(name="pub")
 @RequestScoped
 public class PubView {
-
+    FacesContext context = FacesContext.getCurrentInstance();   
     @EJB
     private PublicationFacade pubfacade ;
     @EJB
@@ -37,6 +37,10 @@ public class PubView {
     
     private Vector<Publication> pub = new Vector<Publication>() ;
     private Forum forum ;
+    private Forum forump ;
+    private Publication publication = new Publication();
+    private Utilisateur user;
+    private Integer forumid;
 
     public void setPub(Vector<Publication> pub) {
         this.pub = pub;
@@ -52,6 +56,30 @@ public class PubView {
 
     public Forum getForum() {
         return forum;
+    }
+
+    public Publication getPublication() {
+        return publication;
+    }
+
+    public void setPublication(Publication publication) {
+        this.publication = publication;
+    }
+
+    public Forum getForump() {
+        return forump;
+    }
+
+    public void setForump(Forum forump) {
+        this.forump = forump;
+    }
+
+    public Integer getForumid() {
+        return forumid;
+    }
+
+    public void setForumid(Integer forumid) {
+        this.forumid = forumid;
     }
     
     
@@ -69,8 +97,20 @@ public class PubView {
         return this.userfacade.findById(id) ;
     }
     
+    public String ajouterPub(){
+        System.out.println("sadadadada");
+        this.forump= this.forumfacade.findByid(this.forumid);
+        this.user=  (Utilisateur) context.getExternalContext().getSessionMap().get("LoginUser");
+        this.publication.setDate(new Date());
+        this.publication.setIdUser(this.user);
+        this.publication.setIdForum(this.forump);
+        this.pubfacade.create(this.publication);
+        return "profil";
+    }
+    
     @PostConstruct
     public void init() {
         this.getPubByIdForum();
+        
     }
 }
