@@ -13,10 +13,11 @@ import javax.persistence.Query;
 
 /**
  *
- * @author Y520
+ * @author SADOK
  */
 @Stateless
 public class UtilisateurFacade extends AbstractFacade<Utilisateur> {
+
     @PersistenceContext(unitName = "Tp8PU")
     private EntityManager em;
 
@@ -28,7 +29,6 @@ public class UtilisateurFacade extends AbstractFacade<Utilisateur> {
     public UtilisateurFacade() {
         super(Utilisateur.class);
     }
-    
     public Utilisateur findByEmail(String email) {
         Query query=em.createNamedQuery("Utilisateur.findByEmail", Utilisateur.class);
         query.setParameter("email",email);
@@ -40,4 +40,5 @@ public class UtilisateurFacade extends AbstractFacade<Utilisateur> {
         query.setParameter("id",id);
         return  (Utilisateur) query.getSingleResult();
     }
+
 }

@@ -1,27 +1,51 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package entities;
+
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-
+/**
+ *
+ * @author SADOK
+ */
 @Entity
 @Table(name = "utilisateur")
+@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Utilisateur.findByEmail",query = "SELECT p FROM Utilisateur p WHERE p.email = :email"),
-    @NamedQuery(name = "Utilisateur.findbyId",query = "SELECT p FROM Utilisateur p WHERE p.idUser = :id"),
-
-})
+    @NamedQuery(name = "Utilisateur.findAll", query = "SELECT u FROM Utilisateur u")
+    , @NamedQuery(name = "Utilisateur.findbyId",query = "SELECT p FROM Utilisateur p WHERE p.idUser = :id")
+    , @NamedQuery(name = "Utilisateur.findByNom", query = "SELECT u FROM Utilisateur u WHERE u.nom = :nom")
+    , @NamedQuery(name = "Utilisateur.findByPrenom", query = "SELECT u FROM Utilisateur u WHERE u.prenom = :prenom")
+    , @NamedQuery(name = "Utilisateur.findByPassword", query = "SELECT u FROM Utilisateur u WHERE u.password = :password")
+    , @NamedQuery(name = "Utilisateur.findByEmail", query = "SELECT u FROM Utilisateur u WHERE u.email = :email")
+    , @NamedQuery(name = "Utilisateur.findByOccupation", query = "SELECT u FROM Utilisateur u WHERE u.occupation = :occupation")
+    , @NamedQuery(name = "Utilisateur.findBySexe", query = "SELECT u FROM Utilisateur u WHERE u.sexe = :sexe")
+     , @NamedQuery(name = "Utilisateur.findBySpecialite", query = "SELECT u FROM Utilisateur u WHERE u.specialite = :specialite")
+    
+    , @NamedQuery(name = "Utilisateur.findByValide", query = "SELECT u FROM Utilisateur u WHERE u.valide = :valide")})
 public class Utilisateur implements Serializable {
 
-   
     @Id
     @GeneratedValue
     @Column(name = "idUser")
@@ -55,9 +79,7 @@ public class Utilisateur implements Serializable {
    
     @Column(name = "valide")
     private Integer valide = 0;
-    
-    @ManyToMany(mappedBy = "utilisateurList")
-    private List<Forum> forumList;
+
     
 
     public Utilisateur() {
@@ -85,14 +107,6 @@ public class Utilisateur implements Serializable {
 
     public String getPrenom() {
         return prenom;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public String getImage() {
-        return image;
     }
 
     public void setPrenom(String prenom) {
@@ -139,6 +153,16 @@ public class Utilisateur implements Serializable {
         this.age = age;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+  
+
     public String getSpecialite() {
         return specialite;
     }
@@ -155,14 +179,6 @@ public class Utilisateur implements Serializable {
         this.valide = valide;
     }
 
-    @XmlTransient
-    public List<Forum> getForumList() {
-        return forumList;
-    }
-
-    public void setForumList(List<Forum> forumList) {
-        this.forumList = forumList;
-    }
 
     @Override
     public int hashCode() {
@@ -184,5 +200,9 @@ public class Utilisateur implements Serializable {
         return true;
     }
 
-   
+    @Override
+    public String toString() {
+        return "aa.Utilisateur[ idUser=" + idUser + " ]";
+    }
+    
 }

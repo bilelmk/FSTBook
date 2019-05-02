@@ -12,10 +12,11 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author Y520
+ * @author SADOK
  */
 @Stateless
 public class MessageFacade extends AbstractFacade<Message> {
+
     @PersistenceContext(unitName = "Tp8PU")
     private EntityManager em;
 

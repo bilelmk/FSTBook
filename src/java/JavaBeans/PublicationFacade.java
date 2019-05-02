@@ -7,7 +7,6 @@ package JavaBeans;
 
 import entities.Forum;
 import entities.Publication;
-import java.util.ArrayList;
 import java.util.Vector;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -16,10 +15,11 @@ import javax.persistence.Query;
 
 /**
  *
- * @author Y520
+ * @author SADOK
  */
 @Stateless
 public class PublicationFacade extends AbstractFacade<Publication> {
+
     @PersistenceContext(unitName = "Tp8PU")
     private EntityManager em;
 
@@ -31,11 +31,11 @@ public class PublicationFacade extends AbstractFacade<Publication> {
     public PublicationFacade() {
         super(Publication.class);
     }
-    
     public Vector<Publication> findByIdForum(Forum id) {
         Query query=em.createNamedQuery("Publication.idForum", Publication.class);
         query.setParameter("id",id);
         return  (Vector<Publication>) query.getResultList();
     }
+
     
 }

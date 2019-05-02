@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Profil</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
@@ -28,10 +29,10 @@
 
             <div class="collapse navbar-collapse" id="Navbar">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active"><a class="nav-link" href="#">Accueil</a></li>
+                    <li class="nav-item active"><a class="nav-link" href="profil.xhtml">Accueil</a></li>
                     <li class="nav-item "><a class="nav-link" href="#">Amies</a></li>
                     <li class="nav-item "><a class="nav-link" href="#">Messages</a></li>
-                    <li class="nav-item "><a class="nav-link" href="#">Forums</a></li>
+                    <li class="nav-item "><a class="nav-link" href="forum.xhtml">Forums</a></li>
                 </ul>
 
                 <ul class="navbar-nav">
@@ -53,7 +54,7 @@
         </div>
     </nav>
     
-    <div style="margin-top: 70px" class="container">
+    <div style="margin-top: 90px" class="container">
         <div class="row">
             <div class="col-12 col-sm-5 col-md-4 col-lg-3" >
                 <div class="profilCard card">
@@ -67,37 +68,118 @@
                  </div>
                 
             </div>
-            <div class="col-12 col-sm-5 col-md-4 col-lg-3">
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <div class="col-md-6" style="margin-top: -15px ">
                 
-                <c:forEach items="#{forms.formList}" var="item" >
-                    <div>
-                        <p>#{item.nom}</p>
-                        <h:form>
-                        <h:commandButton value="afficher publication" action="#{forms.showPub(item)}" />
-                        </h:form>
-                    </div> 
-                </c:forEach>
-                <div>
-                    <c:forEach items="#{forms.publicationList}" var="item" >
-                    <div>
-                        <p>#{item.contenu}</p>
-                        
-                    </div> 
-                    </c:forEach> 
-                </div>
-                <div>
+                 <div class="card text-center bgwhite profilCard mt-3">
+                     
+                    <div class="bgblue" style="height: 4px"></div>
                     <h:form>
-                        <h:inputText value="#{pub.publication.contenu}" ></h:inputText>
-                    <h:selectOneMenu   value="#{pub.forumid}"> 
-                        <c:forEach items="#{forms.formList}" var="item" >
-                            <f:selectItem itemValue="#{item.idForum}" itemLabel="#{item.nom}" /> 
-                        </c:forEach>
-                    </h:selectOneMenu> 
-                    <h:commandButton value="publier" action="#{pub.ajouterPub()}" />
+                        
+                        <div class="row">
+                            <div class="col-2 pm-4 pb-4 pl-4 m-3">
+                                <img class="img-fluid card-img-top rounded-circle" src="#{sessionScope['LoginUser'].image }" alt="Card image cap"/>
+                            </div>
+                             <div class="col-9 mt-3">
+                            <h:inputTextarea  class="pubPost" value="#{pub.publication.contenu}"></h:inputTextarea >
+                            </div> 
+                            
+                        </div>
+                       
+                        <div class="row m-3">
+                            <div class="col-3 offset-5">
+                                <h:selectOneMenu class="SignUpInput" value="#{pub.forumid}"> 
+                                    
+                                    <c:forEach items="#{forms.appartientList}" var="item" >
+                                        <f:selectItem itemValue="#{item.idForum.idForum}" itemLabel="#{item.idForum.nom}" /> 
+                                    </c:forEach>
+                                </h:selectOneMenu>
+                            </div>
+                            <div class="col-3 ml-4 ">
+                                <h:commandButton class="SignUpBtn btn-block" value="publier" action="#{pub.ajouterPub()}" />
+                            </div>
+                        </div>
                     </h:form>
+                     
                 </div>
                 
+                <c:forEach items="#{forms.publicationList}" var="item" >
+                    <div class="card text-center bgwhite profilCard mt-3">
+                        <div class="row">
+                            <div class="col-2">
+                                <img class="img-fluid p-2 mt-3 mb-3 ml-3" src="#{item.idUser.image}" />
+                            </div>
+                            <div class="col-5" style="text-align: left">
+                                <p class="pubUser">#{item.idUser.nom} #{item.idUser.prenom}
+                                    <span>#{item.idUser.occupation}</span>
+                                </p>
+                                <p class="pubDate">
+                                    #{item.date}
+                                </p>
+                            </div>
+                            <div class="col-5"></div>
+                        </div>
+                         <div>
+                        <div style="text-align: left; word-wrap : break-word; " >
+                            <p class="pubPara ">#{item.contenu}</p>
+                        </div> 
+                    </div> 
+                    </div>
+                </c:forEach>
+            </div>                
+
+            
+                
+                
+                   
+            
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="bgblue" style="height: 4px"></div>
+                    <p class="text-center cardT">Liste des Forums</p>
+                    <c:forEach items="#{forms.appartientList}" var="item" >
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item FormLI ">
+                             <h:form>
+                                 <h:commandLink  class="Formbtn" value="#{item.idForum.nom}" action="#{forms.showPub(item.idForum)}" />
+                            </h:form>
+                            </li>
+                         </ul>
+                    </c:forEach>    
+                </div>
+                
+                <h:form enctype="multipart/form-data">
+                    <h:inputFile value="#{pub.file}"  />
+                    <h:commandButton value="Save" type="submit" action="#{pub.save()}" style="color: red;"></h:commandButton>
+                    
+                </h:form>
+                
+                 
+                
+                <c:forEach items="#{pub.fileNameList}" var="item">
+                    <p>#{item}</p>
+                    
+                </c:forEach>
+               
             </div>
+            
+          
+    
+
+            <h:form>   
+                <p:commandButton value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="pi pi-arrow-down">
+                    <p:fileDownload value="#{pub.download('TP3.pdf')}" />
+                </p:commandButton>      
+            </h:form>
+            
             
         </div>
     </div>    
@@ -106,3 +188,13 @@
         
     </h:body>
 </html>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+         

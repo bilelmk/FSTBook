@@ -7,27 +7,41 @@ package entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 
-
+/**
+ *
+ * @author SADOK
+ */
 @Entity
 @Table(name = "commentaire")
-
+@NamedQueries({
+    @NamedQuery(name = "Commentaire.findAll", query = "SELECT c FROM Commentaire c")
+    , @NamedQuery(name = "Commentaire.findByIdCom", query = "SELECT c FROM Commentaire c WHERE c.idCom = :idCom")
+    , @NamedQuery(name = "Commentaire.findByContenu", query = "SELECT c FROM Commentaire c WHERE c.contenu = :contenu")
+    , @NamedQuery(name = "Commentaire.findByDate", query = "SELECT c FROM Commentaire c WHERE c.date = :date")})
 public class Commentaire implements Serializable {
 
-    
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue
     @Column(name = "idCom")
     private Integer idCom;
+    
     @Column(name = "contenu")
     private String contenu;
     @Column(name = "date")
@@ -109,7 +123,7 @@ public class Commentaire implements Serializable {
 
     @Override
     public String toString() {
-        return "aaaa.Commentaire[ idCom=" + idCom + " ]";
+        return "aa.Commentaire[ idCom=" + idCom + " ]";
     }
     
 }

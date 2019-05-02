@@ -8,47 +8,58 @@ package entities;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-
+/**
+ *
+ * @author SADOK
+ */
 @Entity
 @Table(name = "forum")
+@XmlRootElement
+/*@NamedQueries({
+    @NamedQuery(name = "Forum.findAll", query = "SELECT f FROM Forum f")
+    , @NamedQuery(name = "Forum.findByIdForum", query = "SELECT f FROM Forum f WHERE f.idForum = :idForum")
+    , @NamedQuery(name = "Forum.findByNom", query = "SELECT f FROM Forum f WHERE f.nom = :nom")
+    , @NamedQuery(name = "Forum.findByDateCreation", query = "SELECT f FROM Forum f WHERE f.dateCreation = :dateCreation")})*/
 @NamedQueries({
+    @NamedQuery(name = "Forum.findAll", query = "SELECT f FROM Forum f"),
      @NamedQuery(name = "Forum.findById", query = "SELECT p FROM Forum p WHERE p.idForum = :idForum"),
-   // @NamedQuery(name = "Forum.findByIdUser", query = "SELECT p FROM Forum p WHERE p.idUser = :idUser"),
-    @NamedQuery(name = "Forum.findByIdUser", query = "SELECT p FROM Forum p WHERE p.utilisateurList = :idUser"),
-     @NamedQuery(name = "Forum.findById", query = "SELECT p FROM Forum p WHERE p.idForum = :idForum")
+    @NamedQuery(name = "Forum.findByIdUser", query = "SELECT p FROM Forum p WHERE p.idUser = :idUser"),
+    //@NamedQuery(name = "Forum.findByIdUser", query = "SELECT p FROM Forum p WHERE p.utilisateurList = :idUser"),
+    // @NamedQuery(name = "Forum.findById", query = "SELECT p FROM Forum p WHERE p.idForum = :idForum")
     })
 
 public class Forum implements Serializable {
 
+    
     @Id
     @GeneratedValue
     @Column(name = "idForum")
     private Integer idForum;
+    
     @Column(name = "nom")
     private String nom;
     @Column(name = "date_creation")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateCreation;
-    @JoinTable(name = "appartient", joinColumns = {
-        @JoinColumn(name = "idForum", referencedColumnName = "idForum")}, inverseJoinColumns = {
-        @JoinColumn(name = "idUser", referencedColumnName = "idUser")})
-    @ManyToMany
-    private List<Utilisateur> utilisateurList;
     @JoinColumn(name = "idUser", referencedColumnName = "idUser")
     @ManyToOne(optional = false)
     private Utilisateur idUser;
@@ -85,15 +96,6 @@ public class Forum implements Serializable {
         this.dateCreation = dateCreation;
     }
 
-    @XmlTransient
-    public List<Utilisateur> getUtilisateurList() {
-        return utilisateurList;
-    }
-
-    public void setUtilisateurList(List<Utilisateur> utilisateurList) {
-        this.utilisateurList = utilisateurList;
-    }
-
     public Utilisateur getIdUser() {
         return idUser;
     }
@@ -102,7 +104,8 @@ public class Forum implements Serializable {
         this.idUser = idUser;
     }
 
-    
+   
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -123,6 +126,9 @@ public class Forum implements Serializable {
         return true;
     }
 
-    
+    @Override
+    public String toString() {
+        return "aa.Forum[ idForum=" + idForum + " ]";
+    }
     
 }

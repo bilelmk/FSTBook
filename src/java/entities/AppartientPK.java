@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
  * @author SADOK
  */
 @Embeddable
-public class MessagePK implements Serializable {
+public class AppartientPK implements Serializable {
 
     @Basic(optional = false)
     @NotNull
@@ -24,15 +24,15 @@ public class MessagePK implements Serializable {
     private int idUser;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "uti_idUser")
-    private int utiidUser;
+    @Column(name = "idForum")
+    private int idForum;
 
-    public MessagePK() {
+    public AppartientPK() {
     }
 
-    public MessagePK(int idUser, int utiidUser) {
+    public AppartientPK(int idUser, int idForum) {
         this.idUser = idUser;
-        this.utiidUser = utiidUser;
+        this.idForum = idForum;
     }
 
     public int getIdUser() {
@@ -43,33 +43,33 @@ public class MessagePK implements Serializable {
         this.idUser = idUser;
     }
 
-    public int getUtiidUser() {
-        return utiidUser;
+    public int getIdForum() {
+        return idForum;
     }
 
-    public void setUtiidUser(int utiidUser) {
-        this.utiidUser = utiidUser;
+    public void setIdForum(int idForum) {
+        this.idForum = idForum;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
         hash += (int) idUser;
-        hash += (int) utiidUser;
+        hash += (int) idForum;
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof MessagePK)) {
+        if (!(object instanceof AppartientPK)) {
             return false;
         }
-        MessagePK other = (MessagePK) object;
+        AppartientPK other = (AppartientPK) object;
         if (this.idUser != other.idUser) {
             return false;
         }
-        if (this.utiidUser != other.utiidUser) {
+        if (this.idForum != other.idForum) {
             return false;
         }
         return true;
@@ -77,7 +77,7 @@ public class MessagePK implements Serializable {
 
     @Override
     public String toString() {
-        return "aa.MessagePK[ idUser=" + idUser + ", utiidUser=" + utiidUser + " ]";
+        return "aa.AppartientPK[ idUser=" + idUser + ", idForum=" + idForum + " ]";
     }
     
 }

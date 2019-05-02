@@ -9,6 +9,7 @@
     <class>entities.Message</class>
     <class>entities.Publication</class>
     <class>entities.Utilisateur</class>
+    <class>entities.Appartient</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <shared-cache-mode>ALL</shared-cache-mode>
     <properties>

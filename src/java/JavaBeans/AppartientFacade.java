@@ -5,17 +5,20 @@
  */
 package JavaBeans;
 
-import entities.Image;
+import entities.Appartient;
+import entities.Utilisateur;
+import java.util.Vector;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
  * @author SADOK
  */
 @Stateless
-public class ImageFacade extends AbstractFacade<Image> {
+public class AppartientFacade extends AbstractFacade<Appartient> {
 
     @PersistenceContext(unitName = "Tp8PU")
     private EntityManager em;
@@ -25,8 +28,14 @@ public class ImageFacade extends AbstractFacade<Image> {
         return em;
     }
 
-    public ImageFacade() {
-        super(Image.class);
+    public AppartientFacade() {
+        super(Appartient.class);
     }
+    public Vector<Appartient> findByIdUser(Utilisateur userId) {
+        Query query=em.createNamedQuery("Appartient.findByIdUser", Appartient.class);
+        query.setParameter("idUser",userId);
+        return   (Vector<Appartient>) query.getResultList();
+    }
+
     
 }

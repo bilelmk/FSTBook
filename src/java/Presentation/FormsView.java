@@ -5,11 +5,14 @@
  */
 package Presentation;
 
+import JavaBeans.AppartientFacade;
 import JavaBeans.ForumFacade;
 import JavaBeans.PublicationFacade;
+import entities.Appartient;
 import entities.Forum;
 import entities.Publication;
 import entities.Utilisateur;
+import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 import javax.annotation.PostConstruct;
@@ -31,17 +34,34 @@ public class FormsView {
     private ForumFacade forumfacade ;
     @EJB
     private PublicationFacade pubfacade ;
+    @EJB
+    private AppartientFacade apprtientfacade ;
     private Utilisateur user;
-    private Vector<Forum> formList;
+    private Vector<Appartient> appartientList;
     private Vector<Publication> publicationList;
+    private Forum forumAdd= new Forum();
+    
 
-    public Vector<Forum> getFormList() {
-        return formList;
+    public Forum getForumAdd() {
+        return forumAdd;
     }
 
-    public void setFormList(Vector<Forum> formList) {
-        this.formList = formList;
+    public void setForumAdd(Forum forumAdd) {
+        this.forumAdd = forumAdd;
     }
+
+    public Vector<Appartient> getAppartientList() {
+        return appartientList;
+    }
+
+    public void setAppartientList(Vector<Appartient> appartientList) {
+        this.appartientList = appartientList;
+    }
+
+   
+   
+
+   
 
     
     
@@ -68,10 +88,10 @@ public class FormsView {
     public FormsView() {
     }
     
-    public Vector<Forum> listForum(){
+    public Vector<Appartient> listAppartient(){
         try{
-            this.user=  (Utilisateur) context.getExternalContext().getSessionMap().get("LoginUser");
-            return this.forumfacade.findByIdUser(this.user);
+            
+            return this.apprtientfacade.findByIdUser(this.user);
             }
        catch(Exception e){
            
@@ -79,11 +99,10 @@ public class FormsView {
         return null;
     }
 
+   
     public void showPub(Forum idForum){
         try{
-            System.out.println("hahah");
             this.publicationList = this.pubfacade.findByIdForum(idForum);
-            System.out.println(this.publicationList);
             }
        catch(Exception e){
            
@@ -91,9 +110,18 @@ public class FormsView {
         
     }
     
+    public String addForum(){
+        this.forumAdd.setDateCreation(new Date());
+        this.forumAdd.setIdUser(this.user);
+        this.forumfacade.create(this.forumAdd);
+        return null;
+    }
+    
     @PostConstruct
     public void init() {
-        this.formList= this.listForum();
+        this.user=  (Utilisateur) context.getExternalContext().getSessionMap().get("LoginUser");
+        this.appartientList= this.listAppartient();
+       
         this.publicationList= new Vector<Publication>() ;
         
     }

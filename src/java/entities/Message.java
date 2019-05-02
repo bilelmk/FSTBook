@@ -11,16 +11,30 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ *
+ * @author SADOK
+ */
 @Entity
 @Table(name = "message")
 
+@NamedQueries({
+    @NamedQuery(name = "Message.findAll", query = "SELECT m FROM Message m")
+    , @NamedQuery(name = "Message.findByIdUser", query = "SELECT m FROM Message m WHERE m.messagePK.idUser = :idUser")
+    , @NamedQuery(name = "Message.findByUtiidUser", query = "SELECT m FROM Message m WHERE m.messagePK.utiidUser = :utiidUser")
+    , @NamedQuery(name = "Message.findByContenu", query = "SELECT m FROM Message m WHERE m.contenu = :contenu")})
 public class Message implements Serializable {
 
-    
+   
     @EmbeddedId
     protected MessagePK messagePK;
+    
     @Column(name = "contenu")
     private String contenu;
     @JoinColumn(name = "uti_idUser", referencedColumnName = "idUser", insertable = false, updatable = false)
@@ -93,6 +107,9 @@ public class Message implements Serializable {
         return true;
     }
 
-  
+    @Override
+    public String toString() {
+        return "aa.Message[ messagePK=" + messagePK + " ]";
+    }
     
 }

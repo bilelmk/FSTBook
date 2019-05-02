@@ -7,7 +7,6 @@ package JavaBeans;
 
 import entities.Forum;
 import entities.Utilisateur;
-import java.util.List;
 import java.util.Vector;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -16,10 +15,11 @@ import javax.persistence.Query;
 
 /**
  *
- * @author Y520
+ * @author SADOK
  */
 @Stateless
 public class ForumFacade extends AbstractFacade<Forum> {
+
     @PersistenceContext(unitName = "Tp8PU")
     private EntityManager em;
 
@@ -31,17 +31,16 @@ public class ForumFacade extends AbstractFacade<Forum> {
     public ForumFacade() {
         super(Forum.class);
     }
-    
     public Forum findByid(int id) {
           Query query=em.createNamedQuery("Forum.findById", Forum.class);
           query.setParameter("idForum",id);
           return  (Forum) query.getSingleResult();
-      }   
+      } 
     
-    public Vector<Forum> findByIdUser(Utilisateur userId) {
-        Query query=em.createNamedQuery("Forum.findByIdUser", Forum.class);
-        query.setParameter("idUser",userId);
+   /* public Vector<Forum> findAll() {
+        Query query=em.createNamedQuery("Forum.findAll", Forum.class);
         return   (Vector<Forum>) query.getResultList();
     }
+    */
 
 }
