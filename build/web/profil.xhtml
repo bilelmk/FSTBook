@@ -110,8 +110,9 @@
                     </h:form>
                      
                 </div>
-                
-                <c:forEach items="#{forms.publicationList}" var="item" >
+                <c:forEach items="#{forms.appartientList}" var="item" >
+                    <p>#{item.idForum.nom}</p>
+                    <c:forEach items="#{forms.show(item.idForum)}" var="item" >
                     <div class="card text-center bgwhite profilCard mt-3">
                         <div class="row">
                             <div class="col-2">
@@ -133,7 +134,20 @@
                         </div> 
                     </div> 
                     </div>
+                    <div>
+                        <h:form>
+                            <h6>Commentaires:</h6>
+                            <c:forEach items="#{commentaire.findCommentaire(item)}" var="item" >
+                                <p class="pubPara ">#{item.contenu}</p> 
+                            </c:forEach>
+                            <h:inputTextarea  style="width: 100%" value="#{commentaire.commentaire.contenu}"></h:inputTextarea>
+                            
+                            <h:commandButton class="SignUpBtn btn-block" value="add commentaire" action="#{commentaire.addCommentaire(item)}" />
+                            
+                        </h:form>
+                    </div>
                 </c:forEach>
+                    </c:forEach>
             </div>                
 
             
@@ -194,7 +208,3 @@
             
             
             
-            
-            
-            
-         

@@ -159,6 +159,10 @@ public class FormsView implements Serializable {
         
     }
     
+    public Vector<Publication> show(Forum idForum){
+        return this.pubfacade.findByIdForum(idForum);
+    }
+    
     public String addForum(){
         this.forumAdd.setDateCreation(new Date());
         this.forumAdd.setIdUser(this.user);
