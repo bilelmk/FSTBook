@@ -8,8 +8,10 @@ package Presentation;
 import JavaBeans.AppartientFacade;
 import JavaBeans.ForumFacade;
 import entities.Appartient;
+import entities.AppartientPK;
 import entities.Forum;
 import entities.Utilisateur;
+import java.io.Serializable;
 import java.util.Vector;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -24,7 +26,7 @@ import javax.faces.context.FacesContext;
  */
 @Named(value = "rejoindreForum")
 @RequestScoped
-public class rejoindreForum {
+public class rejoindreForum implements Serializable{
     
     FacesContext context = FacesContext.getCurrentInstance();
     @EJB
@@ -35,6 +37,8 @@ public class rejoindreForum {
     private Vector<Appartient> appartientList = new Vector<Appartient>();
     private Vector<Forum> forumList = new Vector<Forum>();
     private Vector<Forum> autreForum = new Vector<Forum>();
+    private Appartient apprtient = new Appartient();
+    private AppartientPK appr= new AppartientPK();
     
 
     
@@ -72,6 +76,17 @@ public class rejoindreForum {
     public void setAutreForum(Vector<Forum> autreForum) {
         this.autreForum = autreForum;
     }
+
+    public Appartient getApprtient() {
+        return apprtient;
+    }
+
+    public void setApprtient(Appartient apprtient) {
+        this.apprtient = apprtient;
+    }
+
+    
+    
     
     
     public Vector<Appartient> listAppartient(){
@@ -104,6 +119,15 @@ public class rejoindreForum {
             }
        catch(Exception e){} 
         return null;
+    }
+    
+    public void rejoindreForum(Forum forum){
+        this.apprtient.setIdForum(forum);
+        this.apprtient.setIdUser(this.user);
+        this.appr.setIdForum(forum.getIdForum());
+        this.appr.setIdUser(this.user.getIdUser());
+        this.apprtient.setAppartientPK(this.appr);
+        this.apprtientfacade.create(this.apprtient);
     }
     
     @PostConstruct

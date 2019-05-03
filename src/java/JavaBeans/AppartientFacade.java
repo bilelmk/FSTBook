@@ -6,6 +6,7 @@
 package JavaBeans;
 
 import entities.Appartient;
+import entities.Forum;
 import entities.Utilisateur;
 import java.util.Vector;
 import javax.ejb.Stateless;
@@ -36,6 +37,22 @@ public class AppartientFacade extends AbstractFacade<Appartient> {
         query.setParameter("idUser",userId);
         return   (Vector<Appartient>) query.getResultList();
     }
-
+    
+    
+            public Vector<Appartient> findByIdForum(Forum idForum) {
+        Query query=em.createNamedQuery("Appartient.findByIdForum", Appartient.class);
+        query.setParameter("idForum",idForum);
+        return   (Vector<Appartient>) query.getResultList();
+    }
+            
+            public void updateValide(Forum idForum, Utilisateur idUser) {
+                
+                Query query=em.createNamedQuery("Appartient.updateValide", Appartient.class);
+                query.setParameter("idForum",idForum);
+                query.setParameter("idUser",idUser);
+                query.executeUpdate();
+                
+           }
+    
     
 }

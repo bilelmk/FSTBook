@@ -37,10 +37,10 @@ public class ForumFacade extends AbstractFacade<Forum> {
           return  (Forum) query.getSingleResult();
       } 
     
-   /* public Vector<Forum> findAll() {
-        Query query=em.createNamedQuery("Forum.findAll", Forum.class);
+   public Vector<Forum> findByIdUser(Utilisateur user) {
+        Query query=em.createNamedQuery("Forum.findByIdUser", Forum.class);
+        query.setParameter("idUser",user);
         return   (Vector<Forum>) query.getResultList();
     }
-    */
-
+    
 }

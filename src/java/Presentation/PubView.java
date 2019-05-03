@@ -129,6 +129,7 @@ import entities.Publication;
 import entities.Utilisateur;
 import java.io.File;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.nio.file.Files;
 import java.util.Date;
 import java.util.Vector;
@@ -144,7 +145,7 @@ import org.primefaces.model.StreamedContent;
 
 @ManagedBean(name="pub")
 @ViewScoped
-public class PubView {
+public class PubView implements Serializable {
     @EJB
     private PublicationFacade pubfacade ;
     @EJB

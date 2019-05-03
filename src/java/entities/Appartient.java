@@ -26,14 +26,17 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Appartient.findAll", query = "SELECT a FROM Appartient a")
     , @NamedQuery(name = "Appartient.findByIdUser", query = "SELECT a FROM Appartient a WHERE a.idUser = :idUser")
     , @NamedQuery(name = "Appartient.findByIdForum", query = "SELECT a FROM Appartient a WHERE a.idForum = :idForum")
-    , @NamedQuery(name = "Appartient.findByValide", query = "SELECT a FROM Appartient a WHERE a.valide = :valide")})
+    , @NamedQuery(name = "Appartient.findByValide", query = "SELECT a FROM Appartient a WHERE a.valide = :valide")
+    , @NamedQuery(name = "Appartient.updateValide",  query = "UPDATE Appartient a SET a.valide = 1 where a.idUser = :idUser and a.idForum = :idForum" )
+})
+    
 public class Appartient implements Serializable {
 
     
     @EmbeddedId
     protected AppartientPK appartientPK;
     @Column(name = "valide")
-    private Integer valide;
+    private Integer valide=0;
     @JoinColumn(name = "idUser", referencedColumnName = "idUser", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Utilisateur idUser;

@@ -72,18 +72,29 @@
                     <h:commandButton value="Creer Forum" action="#{forms.addForum()}" />
                 </h:form>
                 
-                <c:forEach items="#{forms.appartientList}" var="item" >
-                    <div>
-                        <p>#{item.idForum.nom}</p>
-                    </div>
-                 </c:forEach>
+            
+                <h:form>
+                    <c:forEach items="#{forms.mesForums}" var="item" >
+                        <div>
+                            <p>#{item.nom}</p>
+                            <c:forEach items="#{forms.listDemande(item)}" var="itemm" >
+                            <div>
+                                <p>#{itemm.idUser.nom}</p><h:commandButton value="Accepter" action="#{forms.accepter(itemm.idForum, itemm.idUser)}" />
+                            </div>
+                            </c:forEach>
+                        </div>
+                     </c:forEach>
+                </h:form> 
             </div>
             <div class="col-lg-4">
-                <c:forEach items="#{rejoindreForum.autreForum}" var="item" >
-                    <div>
-                        <p>#{item.nom}</p>
-                    </div>
-                 </c:forEach>
+                <h:form>
+                    <c:forEach items="#{rejoindreForum.autreForum}" var="item" >
+                        <div>
+                            <p>#{item.nom}</p>
+                            <h:commandButton value="rejoindre" action="#{rejoindreForum.rejoindreForum(item)}" class="dropdown-item"  /> 
+                        </div>
+                     </c:forEach>
+                </h:form>
             </div>
         </div>
     </div>    

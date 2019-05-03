@@ -7,13 +7,14 @@ package Presentation;
 
 import JavaBeans.UtilisateurFacade;
 import entities.Utilisateur;
+import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 @ManagedBean(name="user")
 @RequestScoped
-public class UtilisateurView {
+public class UtilisateurView implements Serializable {
 
     @EJB 
     private UtilisateurFacade utilisateurFacade ;
